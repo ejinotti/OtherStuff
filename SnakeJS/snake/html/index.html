@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Snakey Snake</title>
+
+    <style>
+      html, body, section, ul, li {
+        padding: 0;
+        margin: 0;
+        border: 0;
+      }
+
+      .group:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+
+      section {
+        margin: 50px auto;
+        width: 800px;
+      }
+
+      ul {
+        height: 500px;
+        margin: 50px auto;
+        list-style: none;
+        width: 500px;
+        border: 5px solid black;
+      }
+
+      li {
+        height: 48px;
+        width: 48px;
+        float: left;
+        border: 1px solid black;
+      }
+
+      li.apple {
+        background: red;
+      }
+
+      li.snake {
+        background: green;
+      }
+
+      /*ul:hover {
+        background: yellow;
+      }
+
+      ul.clicked {
+        background: orange;
+      }
+
+      li.snake {
+        width: 10px;
+      }
+
+      li.medium {
+        width: 100px;
+      }
+
+      li.small {
+        width: 60px;
+      }
+
+      li.empty {
+        border: none;
+        padding: 5px;
+        background: none;
+        width: 140px;
+      }*/
+
+    </style>
+  </head>
+
+  <body>
+    <script src="../js/jquery-2.1.1.js"></script>
+    <!-- Whackjobs at GithubPages don't understand symlinks... -->
+    <script src="../js/snake.js"></script>
+    <script src="../js/snake-view.js"></script>
+
+    <!-- <section class="group"> -->
+      <ul class="group">
+
+
+
+      </ul>
+
+      <!-- <ul class='two' data-num='{ "num": 1}'>
+
+      </ul>
+
+      <ul class='three' data-num='{ "num": 2}'>
+
+      </ul> -->
+    <!-- </section> -->
+
+
+    <script>
+      $(document).on("ready", function(){
+
+        for (var i = 0; i < 100; i++) {
+          var $newLi = $("<li>");
+          $newLi.data("pos", [Math.floor(i / 10), i % 10]);
+          $("ul").append($newLi);
+        }
+
+        var view = new Snakey.View($("pre"));
+
+      });
+    </script>
+  </body>
+</html>

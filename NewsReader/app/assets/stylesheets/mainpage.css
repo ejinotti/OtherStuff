@@ -1,0 +1,17 @@
+#feed-index {
+  float: left;
+  width: 45%;
+  border: 3px solid gray;
+  padding: 10px;
+}
+
+#feed-detail {
+  float: right;
+  width: 45%;
+  border: 3px solid gray;
+  padding: 10px;
+};
+
+ul {
+  list-style: none;
+}

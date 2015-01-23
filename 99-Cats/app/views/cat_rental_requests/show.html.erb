@@ -1,0 +1,18 @@
+<h1>Request Number <%= @request.id %> Show Page</h1>
+
+<table>
+  <% @request.attributes.each do |k,v| %>
+    <% next if ["created_at", "updated_at"].include?(k) %>
+    <tr>
+      <% if k == "cat_id" %>
+        <td><u>Name</u></td><td><%= @request.cat.name %></td>
+      <% else %>
+        <td><u><%= k %></u></td><td><%= v %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<br><br><br>
+<a href= <%= cat_rental_requests_url %>>Index</a>
+<br><br>
+<a href= <%= edit_cat_rental_request_url %>>Edit Rental Request</a>

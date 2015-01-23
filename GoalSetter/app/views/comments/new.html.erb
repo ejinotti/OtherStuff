@@ -1,0 +1,20 @@
+<h1>Post a new commment</h1>
+
+<% type = params.include?(:user_id) ? "User" : "Goal" %>
+<% id = params.include?(:user_id) ? params[:user_id] : params[:goal_id] %>
+
+<form action="<%= comments_url %>" method="post">
+
+  <%= token_tag form_authenticity_token %>
+
+  <label>Comment<br>
+    <textarea name="comment[body]"></textarea>
+  </label>
+
+  <input type="hidden" name="comment[commentable_id]" value="<%= id %>">
+
+  <input type="hidden" name="comment[commentable_type]" value="<%= type %>">
+
+  <input type="submit" value="Submit">
+
+</form>

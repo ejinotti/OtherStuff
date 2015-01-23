@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GoalSetter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div align="right">
+  <% if signed_in? %>
+    <%= current_user.username %>
+    <form action="<%= session_url %>" method="post">
+      <%= token_tag form_authenticity_token %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" name="Sign Out" value="Sign Out">
+    </form>
+  <% else %>
+    <form action="<%= new_session_url %>" method="get">
+      <%= token_tag form_authenticity_token %>
+      <input type="submit" name="Sign In" value="Sign In">
+    </form>
+  <% end %>
+</div>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

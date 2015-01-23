@@ -1,0 +1,14 @@
+<% posts.each(function (post) {%>
+<li>
+  <a
+    data-id="<%= post.id %>"
+    class="show-post"
+    href="javascript:void(0)">
+    <%= post.escape('title') %>
+  </a>
+  <button data-id="<%= post.id %>" class="btn-delete">DELETE</button>
+</li>
+
+<% }) %>
+<br>
+<a href="#posts/new">NEW POST</a>

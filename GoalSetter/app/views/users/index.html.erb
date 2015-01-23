@@ -1,0 +1,9 @@
+<h1>All Users</h1>
+
+<a href="<%= leaderboard_url %>">To Cheer Leaderboard!</a>
+
+<br><br>
+
+<% @users.each do |user| %>
+  <a href="<%= user_url(user) %>"><%= user.username %></a><br>
+<% end %>

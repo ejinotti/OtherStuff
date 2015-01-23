@@ -1,0 +1,32 @@
+<a href="<%= users_url %>">To User Index</a>
+
+<h1><%= @user.username %></h1>
+
+<% if @user == current_user %>
+  Remaining Cheers: <%= @user.cheers %>
+  <br><br>
+<% end %>
+
+<form action="<%= new_user_comment_url(@user) %>" method="get">
+  <%= token_tag form_authenticity_token %>
+  <input type="submit" name="Comment on User" value="Comment on User">
+</form>
+
+<ul>
+  <% @user.comments.each do |comment| %>
+    <li><%= comment.body %> by <%= comment.author.username %></li>
+  <% end %>
+</ul>
+
+<form action="<%= new_user_goal_url(@user) %>" method="get">
+  <%= token_tag form_authenticity_token %>
+  <input type="submit" name="Create Goal" value="Create Goal">
+</form>
+
+<br><br>
+
+<% if current_user == @user %>
+  <%= render @user.goals %>
+<% else %>
+  <%= render @user.goals.where(privacy: false) %>
+<% end %>

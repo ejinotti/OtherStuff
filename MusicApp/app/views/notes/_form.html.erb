@@ -1,0 +1,30 @@
+<% action_url = note.persisted? ? note_url(note) : notes_url %>
+<% form_method = note.persisted? ? "PATCH" : "POST" %>
+<% submit_text = note.persisted? ? "Update Note!" : "Create Note!" %>
+
+<% if !note.full_messages.empty? %>
+  <% note.full_messages.each do |msg| %>
+    <div><%= msg %></div>
+  <% end %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+  <input type="hidden" name="note[track_id]" value="<%= note.track_id %>">
+
+  <br>
+
+  <label>Note
+    <textarea name="note[body]"><%= note.body %></textarea>
+  </label>
+
+  <br>
+
+  <input type="submit" value="<%= submit_text %>">
+</form>

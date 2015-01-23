@@ -1,0 +1,57 @@
+<% action_url = album.persisted? ? album_url(album) : albums_url %>
+<% form_method = album.persisted? ? "PATCH" : "POST" %>
+<% submit_text = album.persisted? ? "Update Album!" : "Create Album!" %>
+
+<% if !album.full_messages.empty? %>
+  <% album.full_messages.each do |msg| %>
+    <div><%= msg %></div>
+  <% end %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+  <label>Name
+    <input type="text" name="album[name]" value="<%= album.name %>">
+  </label>
+
+  <br><br>
+
+  <label>Band
+    <select name="album[band_id]">
+      <% Band.all.each do |band| %>
+        <option
+          value="<%= band.id %>"
+          <%= "selected" if band.id == album.band_id %>>
+          <%= band.name %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+
+  <br><br>
+
+  <div>
+    <% Album::STYLES.each do |style| %>
+      <% label = "album_style_#{style}" %>
+      <label for="<%= label %>">
+      <input
+        id="<%= label %>"
+        name="album[style]"
+        type="radio"
+        value="<%= style %>"
+        <%= "checked" if album.style == style %>>
+        <%= style %>
+      </input>
+    <% end %>
+  </div>
+
+  <br>
+
+  <input type="submit" value="<%= submit_text %>">
+</form>

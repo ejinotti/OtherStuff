@@ -1,0 +1,7 @@
+<h1>Rental Request Index!</h1>
+
+<ul>
+  <% @requests.each do |req| %>
+    <li> <a href= <%= cat_rental_request_url(req) %>> <%= "#{req.id} -> #{req.cat.name}" %> </a>
+  <% end %>
+</ul>

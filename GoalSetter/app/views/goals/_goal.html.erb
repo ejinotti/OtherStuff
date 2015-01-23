@@ -1,0 +1,57 @@
+
+<%= "COMPLETED" if goal.completed %><br>
+<%= goal.objective %><br>
+Cheers: <%= goal.cheers %><br>
+
+<table>
+  <tr>
+    <% if current_user.id == goal.user_id %>
+      <%= goal.privacy ? "Private" : "Public" %>
+      <td>
+        <form action="<%= edit_goal_url %>" method="get">
+          <%= token_tag form_authenticity_token %>
+          <input type="submit" name="Edit" value="Edit">
+        </form>
+      </td>
+
+      <td>
+        <form action="<%= goal_url(goal) %>" method="post">
+          <%= token_tag form_authenticity_token %>
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" name="Delete" value="Delete">
+        </form>
+      </td>
+
+      <td>
+        <% unless goal.completed %>
+          <form action="<%= goal_url(goal) %>" method="post">
+            <%= token_tag form_authenticity_token %>
+            <input type="hidden" name="_method" value="patch">
+            <input type="hidden" name="goal[completed]" value="true">
+            <input type="submit" name="Mark Complete" value="Mark Complete">
+          </form>
+        <% end %>
+      </td>
+    <% end %>
+    <td>
+      <form action="<%= new_goal_comment_url(goal) %>" method="get">
+        <%= token_tag form_authenticity_token %>
+        <input type="submit" name="Comment on Goal" value="Comment on Goal">
+      </form>
+    </td>
+    <% unless current_user.id == goal.user_id %>
+      <td>
+        <form action="<%= add_cheers_goal_url(goal) %>" method="post">
+          <%= token_tag form_authenticity_token %>
+          <input type="submit" name="Cheers" value="Cheers">
+        </form>
+      </td>
+    <% end %>
+  </tr>
+</table>
+
+<ul>
+  <% goal.comments.each do |comment| %>
+    <li><%= comment.body %> by <%= comment.author.username %></li>
+  <% end %>
+</ul>

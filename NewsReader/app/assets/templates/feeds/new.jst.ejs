@@ -1,0 +1,16 @@
+<form>
+
+  <label>Title<br>
+    <input type="text" name="feed[title]" value="<%= feed.escape('title') %>">
+  </label>
+  <br>
+
+  <label>URL<br>
+    <input type="text" name="feed[url]" value="<%= feed.escape('url') %>">
+  </label>
+  <br>
+
+  <input type="submit" value="Submit!">
+  <br>
+
+</form>

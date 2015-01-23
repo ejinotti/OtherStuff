@@ -1,0 +1,15 @@
+<h1>NewsReader Yo</h1>
+
+<div id="create-feed">
+  <button>Create New Feed!</button>
+</div>
+
+<ul>
+  <% feeds.each(function (feed) { %>
+    <li>
+      <a href="<%= "#feeds/" + feed.id %>">
+        <%= feed.escape('title') %>
+      </a>
+    </li>
+  <% }); %>
+</ul>

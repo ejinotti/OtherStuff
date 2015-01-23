@@ -1,0 +1,38 @@
+<h1><%= @cat.name %>'s Show Page</h1>
+
+<table>
+  <% @cat.attributes.each do |k,v| %>
+    <% next if ["created_at", "updated_at"].include?(k) %>
+    <tr><td><u><%= k %></u></td><td><%= v %></td></tr>
+  <% end %>
+  <tr><td><u>Age</u></td><td><%= @cat.age %></td></tr>
+</table>
+
+<br><br>
+
+<table>
+  <tr><td>Requests for <%= @cat.name %></td></tr>
+  <% @cat.cat_rental_requests.order(:start_date).each do |req| %>
+    <tr>
+      <td><%= req.start_date %> ----> <%= req.end_date %></td>
+      <% if req.status == "PENDING" && @cat.owner.id == current_user.id %>
+        <td>
+        <%= button_to("APPROVE!", req_approve_url(req.id), method: :post) %>
+        </td>
+        <td>
+        <%= button_to("DENY!", req_deny_url(req.id), method: :post) %>
+        </td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Requester: <%= req.requester.user_name %></td>
+      <td>Status: <%= req.status %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br><br>
+
+<a href= <%= cats_url %>>Index</a>
+<br><br>
+<a href= <%= edit_cat_url %>>Edit cat</a>

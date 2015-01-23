@@ -1,0 +1,60 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.apptitle {
+  color: #99FF99;
+  margin: 2% 0% 0% 45%;
+  width: 100%
+}
+
+#sidebar {
+  float: left;
+  width: 40%;
+  position: relative;
+  left: 10%;
+  font-family: "Helvetica";
+}
+
+#content {
+  width: 40%;
+  float: right;
+  position: relative;
+  right: 5%;
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+body{
+  background-image: image-url("bgbook.jpg");
+  //background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+li{
+  margin: 5px;
+}
+
+.btn-delete{
+  background: blue;
+  color: yellow;
+}
+
+.btn-delete:hover{
+  background: red;
+  color: black;
+}
+
+a.show-post{
+ background: yellow;
+ float: left;
+}
+
+li {
+  border: 5px solid black;
+  border-radius: 5px;
+}
